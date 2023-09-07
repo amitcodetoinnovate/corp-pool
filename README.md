@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # corp-pool
 =======
 # Expo Router Example
@@ -15,4 +14,4 @@ npx create-expo-app -e with-router
 
 - [Expo Router: Docs](https://expo.github.io/router)
 - [Expo Router: Repo](https://github.com/expo/router)
->>>>>>> 52e0275 (Initial commit)
+
