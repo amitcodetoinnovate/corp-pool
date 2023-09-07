@@ -1,0 +1,40 @@
+# Dependency directories
+node_modules/
+yarn-error.log
+
+# iOS build artifacts
+ios/build/
+ios/Pods/
+
+# Android build artifacts
+android/.gradle
+android/app/build/
+android/app/release/
+
+# Generated files
+*.moved-aside
+*.hprof
+*.pyc
+
+# Secrets and credentials
+.env
+.env.local
+
+# IDEs and editors
+.idea/
+*.swp
+*.swo
+*.swn
+.DS_Store
+
+# Temp files
+*.tmp
+*.tmp.*
+*.bak
+*.swp
+*.log
+
+# Others
+npm-debug.log
+yarn-debug.log
+yarn-error.log
