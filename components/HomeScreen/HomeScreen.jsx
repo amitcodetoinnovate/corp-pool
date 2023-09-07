@@ -19,7 +19,7 @@ const HomeScreen = () => {
                     headerRight: () => (
                         <ScreenHeaderBtn iconUrl={images.myimage} dimensions="100%" />
                     ),
-                    headerTitle: ""
+                    headerTitle: " Welcome to CorpPool"
                 }}
             />
             <View style={{ padding: 15 }}>
