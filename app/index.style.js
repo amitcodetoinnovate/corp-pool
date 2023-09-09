@@ -17,6 +17,10 @@ const styles = StyleSheet.create({
     },
     azureButton: {
         backgroundColor: '#0078d7',
+    },
+    mainContainer: {
+        flex: 1,
+        backgroundColor: '#eeeee4',
     }
 });
 export default styles;

@@ -6,7 +6,7 @@ import * as WebBrowser from 'expo-web-browser';
 import { makeRedirectUri, useAuthRequest, ResponseType } from 'expo-auth-session';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import WelcomeScreen from '../components/WelcomeScreen/WelcomeScreen';
-import HomeScreen from '../components/HomeScreen/HomeScreen';
+import MainContainer from '../components/navigation/MainContainer/MainContainer';
 import styles from './index.style';
 
 WebBrowser.maybeCompleteAuthSession();
@@ -86,8 +86,10 @@ const Home = () => {
                 </View>
             </SafeAreaView>);
     }
-
-    return <HomeScreen />;
+    return (
+        <SafeAreaView style={styles.mainContainer}>
+            <MainContainer />
+        </SafeAreaView>);
 };
 
 export default Home;

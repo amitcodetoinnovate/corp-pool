@@ -1,68 +1,51 @@
-import { StyleSheet } from "react-native";
-
-import { COLORS, FONT, SIZES } from "../../../constants";
+import { StyleSheet } from 'react-native';
+import { COLORS, FONT, SIZES } from '../../../constants';
 
 const styles = StyleSheet.create({
-    container: {
-        width: "100%",
-    },
-    userName: {
-        fontFamily: FONT.bold,
-        fontSize: SIZES.medium,
-        color: COLORS.secondary,
-    },
-    welcomeMessage: {
-        fontFamily: FONT.bold,
-        fontSize: SIZES.xLarge,
-        color: COLORS.primary,
-        marginTop: 2,
-    },
     searchContainer: {
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "row",
         marginTop: SIZES.large,
+        alignItems: 'flex-end',
         height: 50,
     },
     searchWrapper: {
         flex: 1,
         backgroundColor: COLORS.white,
         marginRight: SIZES.small,
-        justifyContent: "center",
-        alignItems: "center",
-        borderRadius: SIZES.medium,
-        height: "100%",
+        borderRadius: SIZES.xSmall,
+        width: '90%',
+        flexDirection: 'row-reverse',
     },
     searchInput: {
+        fontFamily: FONT.bold,
+        width: '100%',
+        fontSize: SIZES.medium,
+        height: '100%',
+        paddingHorizontal: SIZES.xSmall,
+        margin: 0,
+    },
+    overlay: {
+        position: 'relative',
+        top: 20,
+        opacity: 5,
+        left: 0,
+        right: 10,
+        zIndex: 10,
+        alignItems: 'center',
+        width: '100%',
+    },
+    searchList: {
+        borderColor: 'black',
+
+    },
+    searchListText: {
+        marginBottom: 1.5,
         fontFamily: FONT.regular,
-        width: "100%",
-        height: "100%",
-        paddingHorizontal: SIZES.medium,
-    },
-    searchBtn: {
-        width: 30,
-        height: "65%",
-        backgroundColor: COLORS.secondary,
-        borderRadius: SIZES.xxLarge,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    searchBtnImage: {
-        width: "100%",
-        height: "100%",
-        tintColor: COLORS.white,
-    },
-    tabsContainer: {
-        width: "100%",
-        marginTop: SIZES.medium,
-    },
-    tab: (activeJobType, item) => ({
-        paddingVertical: SIZES.small / 2,
-        paddingHorizontal: SIZES.small,
-        borderRadius: SIZES.medium,
+        paddingHorizontal: SIZES.xSmall,
+        paddingVertical: 1,
         borderWidth: 1,
-        borderColor: activeJobType === item ? COLORS.secondary : COLORS.gray2,
-    }),
+        borderRadius: 2,
+
+    },
     tabText: (activeJobType, item) => ({
         fontFamily: FONT.medium,
         color: activeJobType === item ? COLORS.secondary : COLORS.gray2,

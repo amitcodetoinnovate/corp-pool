@@ -12,12 +12,6 @@ const WelcomeScreen = () => {
                 options={{
                     headerStyle: { backgroundColor: COLORS.lightWhite },
                     headerShadowVisible: false,
-                    // headerLeft: () => (
-                    //     <ScreenHeaderBtn iconUrl={icons.menu} dimensions="60%" />
-                    // ),
-                    // headerRight: () => (
-                    //     <ScreenHeaderBtn iconUrl={images.myimage} dimensions="100%" />
-                    // ),
                     headerTitle: ""
                 }}
             />

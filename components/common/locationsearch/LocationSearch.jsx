@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import cancel from '../../../assets/icons/cancel.png'
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 import {
     View,
     Text,
@@ -11,8 +12,8 @@ import {
 import axios from 'axios';
 import styles from './locationSearch.style';
 
-const LocationSearchComponent = ({ locationText, onLocationSelected }) => {
-    const [input, setInput] = useState('');
+const LocationSearchComponent = ({ locationText, onLocationSelected, iconName }) => {
+    const [input, setInput] = useState(null);
     const [predictions, setPredictions] = useState([]);
     const data = {
         "predictions": [
@@ -114,38 +115,31 @@ const LocationSearchComponent = ({ locationText, onLocationSelected }) => {
 
     return (
         <View>
-            <View style={styles.container}>
-                <Text style={styles.userName}>{locationText}</Text>
-            </View>
-
             <View style={styles.searchContainer}>
                 <View style={styles.searchWrapper}>
                     <TextInput
                         style={styles.searchInput}
                         value={input}
                         onChangeText={handleInput}
-                        placeholder={locationText}
+                        placeholder="Enter a location"
                     />
+                    <View style={{ paddingTop: 10 }}>
+                        <Ionicons name={iconName} size={30} color={'black'} />
+                    </View>
                 </View>
-                <TouchableOpacity style={styles.searchBtn} onPress={clearInput}>
-                    <Image
-                        source={cancel}
-                        resizeMode='contain'
-                        style={styles.searchBtnImage}
-                    />
-                </TouchableOpacity>
             </View>
 
-
-            <View style={styles.tabsContainer}>
+            <View style={styles.overlay}>
                 <FlatList
                     data={predictions}
                     keyExtractor={(item) => item.id}
+                    style={styles.searchList}
                     renderItem={({ item }) => (
                         <TouchableOpacity
                             style={styles.tabText}
-                            onPress={() => handlePredictionPress(item)}>
-                            <Text>{item.description}</Text>
+                            onPress={() => handlePredictionPress(item)}
+                        >
+                            <Text style={styles.searchListText}>{item.description}</Text>
                         </TouchableOpacity>
                     )}
                 />
