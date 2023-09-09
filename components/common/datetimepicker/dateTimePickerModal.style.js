@@ -1,29 +1,32 @@
 import { StyleSheet } from 'react-native';
-import { COLORS, SIZES } from '../../../constants';
-
+import { COLORS } from '../../../constants';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    },
-    searchContainer: {
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "row",
-        marginTop: SIZES.large,
-        height: 50,
-    },
-    searchWrapper: {
-        flex: 1,
-        backgroundColor: COLORS.white,
-        marginRight: SIZES.small,
-        justifyContent: "center",
-        alignItems: "center",
-        borderRadius: SIZES.medium,
-        height: "100%",
-    }
-});
+        width: 70,
 
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    dateButton: {
+        justifyContent: 'flex-end',
+        height: '100%',
+
+    },
+    dateText: {
+        fontSize: 13,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        backgroundColor: COLORS.white,
+        borderColor: 'gray',
+        borderWidth: 1,
+        padding: 2,
+        marginBottom: 20,
+        borderRadius: 8,
+    },
+    btnText: {
+        color: 'blue',
+    },
+});
 export default styles;

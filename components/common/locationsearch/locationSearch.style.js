@@ -5,12 +5,12 @@ const styles = StyleSheet.create({
     searchContainer: {
         marginTop: SIZES.large,
         alignItems: 'flex-end',
-        height: 50,
+        height: 30,
     },
     searchWrapper: {
         flex: 1,
         backgroundColor: COLORS.white,
-        marginRight: SIZES.small,
+        marginRight: SIZES.large,
         borderRadius: SIZES.xSmall,
         width: '90%',
         flexDirection: 'row-reverse',

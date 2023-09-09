@@ -6,19 +6,21 @@ const styles = StyleSheet.create({
     container: {
         width: "100%",
         height: "100%",
-        backgroundColor: '#fff',
+        backgroundColor: 'white',
+        flex: 1,
 
     },
-    searchContainer: {
+    queryContainer: {
+        width: "100%",
+        height: "100%",
+        marginTop: 15,
+        //backgroundColor: 'red',
         flex: 1,
-        margin: 0,
-        padding: 0,
-        borderColor: '#8f8f89',
-        borderRadius: 10,
-        borderWidth: 2,
-        shadowRadius: 50,
-        shadowColor: 'grey',
-        elevation: 3,
+    },
+    carAndDatePickerContainer: {
+        flex: 1,
+        flexDirection: "row",
+        alignItems: "center",
     },
     dataContainer: {
         flex: 3,

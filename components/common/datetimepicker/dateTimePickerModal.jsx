@@ -1,47 +1,44 @@
 import React, { useState } from 'react';
-import { View, Modal, Platform, TouchableOpacity, Text } from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import { View, Text, TouchableOpacity } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import styles from './dateTimePickerModal.style';
-import { formatDate } from '../../../utils/dateFormatter';
-export default function DateTimePickerModal({ onDateChange, selectedDate }) {
-    const [show, setShow] = useState(false);
+import formatDate from '../../../utils/dateFormatter';
 
-    const onChange = (event, selectedDate) => {
-        const currentDate = selectedDate || new Date();
-        setShow(Platform.OS === 'ios');
-        onDateChange(currentDate);
-        if (Platform.OS !== 'ios') {
-            setShow(false);
-        }
+const DateTimePickerWithModal = () => {
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [datePickerVisible, setDatePickerVisible] = useState(false);
+
+    const showDatePicker = () => {
+        setDatePickerVisible(true);
     };
 
-    const closeModal = () => {
-        setShow(false);
+    const hideDatePicker = () => {
+        setDatePickerVisible(false);
+    };
+
+    const handleConfirm = (date) => {
+        setSelectedDate(date);
+        hideDatePicker();
     };
 
     return (
-        <View style={styles.searchContainer}>
-            <TouchableOpacity style={styles.searchBtn} onPress={() => setShow(true)}>
-                <View style={styles.searchWrapper}>
-                    <Text style={styles.searchInput}>
-                        {selectedDate ? formatDate(selectedDate) : 'Select Date and Time'}
-                    </Text>
-                </View>
+        <View style={styles.container}>
+            <TouchableOpacity style={styles.dateButton} onPress={showDatePicker}>
+                <Text style={styles.dateText}>
+                    <Ionicons name="time-outline" size={20} color="black" />
+                    {selectedDate ? formatDate(selectedDate) : 'Start now'}
+                </Text>
             </TouchableOpacity>
-            {show && (
-                <Modal transparent={true} visible={true}>
-                    <TouchableOpacity style={styles.container} onPress={closeModal}>
-                        <View style={{ alignSelf: 'center' }}>
-                            <DateTimePicker
-                                value={selectedDate || new Date()}
-                                mode="datetime"
-                                display="default"
-                                onChange={onChange}
-                            />
-                        </View>
-                    </TouchableOpacity>
-                </Modal>
-            )}
+            <DateTimePickerModal
+                date={selectedDate}
+                isVisible={datePickerVisible}
+                mode="datetime"
+                onConfirm={handleConfirm}
+                onCancel={hideDatePicker}
+            />
         </View>
     );
-}
+};
+
+export default DateTimePickerWithModal;

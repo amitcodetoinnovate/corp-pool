@@ -123,8 +123,8 @@ const LocationSearchComponent = ({ locationText, onLocationSelected, iconName })
                         onChangeText={handleInput}
                         placeholder="Enter a location"
                     />
-                    <View style={{ paddingTop: 10 }}>
-                        <Ionicons name={iconName} size={30} color={'black'} />
+                    <View style={{ paddingBottom: 0, marginBottom: 0 }}>
+                        <Ionicons name={iconName} size={20} color={'black'} />
                     </View>
                 </View>
             </View>
