@@ -13,14 +13,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
         padding: 3,
-        backgroundColor: 'grey',
+        backgroundColor: '#06002B07',
         margin: 1,
         marginRight: 5,
         borderRadius: 10,
         height: 30,
     },
     selected: {
-        backgroundColor: '#AADE31',
+        backgroundColor: '#0066FFE5',
         fontSize: 20,
     },
 });
