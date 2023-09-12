@@ -10,7 +10,6 @@ const useUserProfile = () => {
         const fetchProfile = async () => {
             setIsLoading(true);
             const token = await AsyncStorage.getItem('userToken');
-            console.log(token);
 
             // Fetch user's basic profile information
             const response = await fetch('https://graph.microsoft.com/v1.0/me', {
@@ -20,7 +19,6 @@ const useUserProfile = () => {
             });
 
             const profileData = await response.json();
-            console.log(profileData);
             setUserName(profileData.givenName || 'Anonymous');
 
             // Fetch user's profile picture

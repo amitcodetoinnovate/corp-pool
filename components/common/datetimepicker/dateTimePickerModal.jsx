@@ -26,7 +26,7 @@ const DateTimePickerWithModal = () => {
         <View style={styles.container}>
             <TouchableOpacity style={styles.dateButton} onPress={showDatePicker}>
                 <Text style={styles.dateText}>
-                    <Ionicons name="time-outline" size={20} color="black" />
+                    <Ionicons name="time-outline" size={15} color="black" />
                     {selectedDate ? formatDate(selectedDate) : 'Start now'}
                 </Text>
             </TouchableOpacity>

@@ -11,7 +11,7 @@ const CarSwitchSelector = ({ onSelect, selected }) => {
                 onPress={() => onSelect('offer')}
             >
                 <Ionicons name="car" size={15} color={selected === 'offer' ? 'white' : 'black'} />
-                <Text style={selected === 'offer' ? { color: 'white', fontSize: 11 } : { fontSize: 11 }}>Offer Ride</Text>
+                <Text style={selected === 'offer' ? { color: 'white', fontSize: 11 } : { fontSize: 11 }}> Offer Ride</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -19,7 +19,7 @@ const CarSwitchSelector = ({ onSelect, selected }) => {
                 onPress={() => onSelect('need')}
             >
                 <Ionicons name="person" size={15} color={selected === 'need' ? 'white' : 'black'} />
-                <Text style={selected === 'need' ? { color: 'white', fontSize: 11 } : { fontSize: 11 }}>Need Ride</Text>
+                <Text style={selected === 'need' ? { color: 'white', fontSize: 11 } : { fontSize: 11 }}> Need Ride</Text>
             </TouchableOpacity>
         </View>
     );

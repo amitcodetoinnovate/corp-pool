@@ -79,6 +79,12 @@ const styles = StyleSheet.create({
         display: "flex",
         backgroundColor: '#c3e5ec',
 
+    },
+    profilePicContent: {
+        flex: 1,
+        borderRadius: SIZES.medium,
+        backgroundColor: COLORS.white,
+        marginTop: SIZES.small,
     }
 });
 

@@ -8,6 +8,7 @@ import TripsScreen from '../TripsScreen/TripsScreen';
 import ProfileScreen from '../ProfileScreen/ProfileScreen';
 import styles from './MainContainer.style';
 import { COLORS, FONT, SIZES } from "../../../constants";
+import useUserProfile from '../../../hooks/useUserProfile';
 
 const homeName = "Home";
 const tripsName = "Trips";
@@ -16,9 +17,10 @@ const profileName = "Profile";
 const Tab = createBottomTabNavigator();
 
 const MainContainer = () => {
+    const { userName, profilePicContent, isLoading } = useUserProfile();  // Use the custom hook here
+
     return (
         <View style={styles.container}>
-
             <Tab.Navigator
                 initialRouteName={homeName}
                 screenOptions={({ route }) => ({
@@ -43,18 +45,26 @@ const MainContainer = () => {
                         } else if (rn === tripsName) {
                             iconName = focused ? 'car-sport'
                                 : 'car-sport-outline';
-                        } else if (route.name === profileName) {
-                            iconName = focused ? 'person'
-                                : 'person-outline';
+                        } else if (rn === profileName) {
+                            if (isLoading) {
+                                // If still loading, maybe return a placeholder
+                                return <Text>Loading...</Text>
+                            }
+                            return (
+                                // <View style={styles.profilePicContent}>
+                                <Image
+                                    source={profilePicContent ? { uri: profilePicContent } : undefined}
+                                    style={{ width: 25, height: 25 }}
+                                />
+                                // </View>
+                            );
                         }
-
                         return <Ionicons name={iconName} size={size} color={color} />;
                     },
                 })}>
                 <Tab.Screen options={{ headerShown: false }} name={homeName} component={HomeScreen} />
                 <Tab.Screen options={{ headerShown: false }} name={tripsName} component={TripsScreen} />
                 <Tab.Screen options={{ headerShown: false }} name={profileName} component={ProfileScreen} />
-
             </Tab.Navigator>
         </View>
     );

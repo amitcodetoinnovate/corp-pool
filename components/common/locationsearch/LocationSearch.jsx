@@ -19,11 +19,10 @@ const LocationSearchComponent = ({ onLocationSelected, iconName }) => {
 
     const getPredictions = async (input) => {
         try {
-            // const result = await axios.get(
-            //     `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&key=YOUR_GOOGLE_API_KEY`
-            // );
-            // setPredictions(result.data.predictions);
-            setPredictions(data.predictions);
+            const result = await axios.get(
+                `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&key=AIzaSyDKpTEQ9_RQU9L08gYNsWkvtcrW7m7PV5Q`
+            );
+            setPredictions(result.data.predictions);
         } catch (error) {
             console.error(error);
         }
@@ -78,14 +77,14 @@ const LocationSearchComponent = ({ onLocationSelected, iconName }) => {
                             setModalVisible(false);
                         }}
                     >
-                        <Ionicons name={'close'} size={30} color={'black'} />
+                        <Ionicons name={'close'} size={25} color={'grey'} />
 
                     </TouchableOpacity>
                 </View>
                 <View style={styles.flatListContainer}>
                     <FlatList
                         data={predictions}
-                        keyExtractor={(item) => item.id}
+                        keyExtractor={(item) => item.place_id}
                         renderItem={({ item }) => (
                             <TouchableOpacity
                                 onPress={() => handlePredictionPress(item)}
@@ -105,7 +104,7 @@ const LocationSearchComponent = ({ onLocationSelected, iconName }) => {
                     }}>
 
 
-                    <Ionicons name={iconName} size={20} color={'black'} />
+                    <Ionicons name={iconName} size={18} color={'black'} />
                     <TextInput
                         pointerEvents="none"
                         style={styles.searchInput}
@@ -122,68 +121,3 @@ const LocationSearchComponent = ({ onLocationSelected, iconName }) => {
 };
 
 export default LocationSearchComponent;
-const data = {
-    "predictions": [
-        {
-            "description": "San Francisco, CA, USA",
-            "id": "some_id_1",
-            "place_id": "some_place_id_1",
-            "types": ["locality", "political", "geocode"]
-        },
-        {
-            "description": "San Diego, CA, USA",
-            "id": "some_id_2",
-            "place_id": "some_place_id_2",
-            "types": ["locality", "political", "geocode"]
-        },
-        {
-            "description": "San Jose, CA, USA",
-            "id": "some_id_3",
-            "place_id": "some_place_id_3",
-            "types": ["locality", "political", "geocode"]
-        },
-        {
-            "description": "San Antonio, TX, USA",
-            "id": "some_id_4",
-            "place_id": "some_place_id_4",
-            "types": ["locality", "political", "geocode"]
-        },
-        {
-            "description": "Santa Monica, CA, USA",
-            "id": "some_id_5",
-            "place_id": "some_place_id_5",
-            "types": ["locality", "political", "geocode"]
-        },
-        {
-            "description": "Santa Clara, CA, USA",
-            "id": "some_id_6",
-            "place_id": "some_place_id_6",
-            "types": ["locality", "political", "geocode"]
-        },
-        {
-            "description": "Santa Barbara, CA, USA",
-            "id": "some_id_7",
-            "place_id": "some_place_id_7",
-            "types": ["locality", "political", "geocode"]
-        },
-        {
-            "description": "Santiago, Chile",
-            "id": "some_id_8",
-            "place_id": "some_place_id_8",
-            "types": ["locality", "political", "geocode"]
-        },
-        {
-            "description": "Santorini, Greece",
-            "id": "some_id_9",
-            "place_id": "some_place_id_9",
-            "types": ["locality", "political", "geocode"]
-        },
-        {
-            "description": "San Juan, Puerto Rico",
-            "id": "some_id_10",
-            "place_id": "some_place_id_10",
-            "types": ["locality", "political", "geocode"]
-        }
-    ],
-    "status": "OK"
-};
