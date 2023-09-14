@@ -19,9 +19,15 @@ const useUserProfile = () => {
             });
 
             const profileData = await response.json();
-            setUserName(profileData.givenName || 'Anonymous');
 
-            // Fetch user's profile picture
+            setUserName(profileData.givenName || 'Anonymous');
+            await AsyncStorage.setItem('user', JSON.stringify({
+                userId: profileData.id,
+                fistName: profileData.givenName,
+                lastName: profileData.surname,
+                email: profileData.userPrincipalName,
+
+            }));
             const pictureResponse = await fetch('https://graph.microsoft.com/v1.0/me/photo/$value', {
                 headers: {
                     Authorization: `Bearer ${token}`,

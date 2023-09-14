@@ -3,9 +3,9 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import styles from './dateTimePickerModal.style';
-import formatDate from '../../../utils/dateFormatter';
+import { formatDate } from '../../../utils/dateFormatter';
 
-const DateTimePickerWithModal = () => {
+const DateTimePickerWithModal = ({ onDateChange }) => {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [datePickerVisible, setDatePickerVisible] = useState(false);
 
@@ -20,6 +20,10 @@ const DateTimePickerWithModal = () => {
     const handleConfirm = (date) => {
         setSelectedDate(date);
         hideDatePicker();
+
+        if (onDateChange) {
+            onDateChange(date);
+        }
     };
 
     return (
