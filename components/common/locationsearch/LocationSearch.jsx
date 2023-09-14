@@ -40,10 +40,14 @@ const LocationSearchComponent = ({ onLocationSelected, iconName }) => {
         setInput('');
         setModalVisible(false);
         setPredictions([]);
-        if (onLocationSelected) {
+
+        if (typeof onLocationSelected === 'function') {
             onLocationSelected(prediction);
+        } else {
+            console.error('onLocationSelected is not a function');
         }
     };
+
 
     return (
         <View>
@@ -52,8 +56,6 @@ const LocationSearchComponent = ({ onLocationSelected, iconName }) => {
                 style={{
                     flex: 1,
                     marginTop: -30,
-
-
                 }}
                 transparent={false}
                 visible={isModalVisible}

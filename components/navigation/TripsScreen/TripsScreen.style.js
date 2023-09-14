@@ -37,31 +37,94 @@ const styles = StyleSheet.create({
     },
     dataContainer: {
         flex: 3,
-        backgroundColor: '#FAFCFF',
-        // borderTopColor: 'grey',
-        // shadowColor: "pink",
-        // shadowwidth: 1,
-        marginTop: 10,
-        padding: 10,
-        // shadowColor: '#171717',
-        // shadowOffset: { width: -2, height: 4 },
-        // shadowOpacity: 0.2,
-        // shadowRadius: 3,
+        flexDirection: "column",
+        marginTop: 1,
+        padding: 0,
+        //backgroundColor: 'pink',
+
     },
-    dataCardScreen: {
+    dataContainerActionScreen: {
         flex: 1,
-        topmargin: 1000,
-        backgroundColor: 'black',
-        borderRadius: 8,
-        paddingVertical: 200,
-        paddingHorizontal: 25,
-        width: '100%',
-        height: '100%',
-        marginVertical: 10,
+        flexDirection: "row",
+        //backgroundColor: 'red',
+    },
+    dataContainerActionScreenButtonConatiner: {
+        flex: 1,
+        //borderBlockColor: 'black',
+        //borderWidth: 1,
+        justifyContent: "center",
+        alignItems: "center",
         shadowColor: '#171717',
         shadowOffset: { width: -2, height: 4 },
         shadowOpacity: 0.2,
         shadowRadius: 3,
+    },
+    dataContainerActionScreenButtonWrapper: {
+        //width: "50%",
+        backgroundColor: '#0066FFE5',
+        borderRadius: 15,
+        marginLeft: 30,
+
+    },
+    dataContainerActionButtonText: {
+        //backgroundColor: 'white',
+        paddingTop: 4,
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingBottom: 4,
+        fontFamily: FONT.bold,
+        fontSize: 18,
+        color: 'white',
+
+
+    },
+    dataSearchResultScreen: {
+        flex: 10,
+        //backgroundColor: 'orange',
+
+    },
+    dataSearchResultSwitchContainer: {
+        flex: 1.2,
+        marginTop: 4,
+        marginBottom: 5,
+        //backgroundColor: 'yellow',
+
+    },
+    dataSearchResultSwitchContainerStyle: {
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        alignSelf: "center",
+
+    },
+    trackBar: {
+        height: 40,
+        width: 90,
+        activeBackgroundColor: COLORS.gray2,
+        inActiveBackgroundColor: COLORS.gray2,
+        borderWidth: 1,
+        borderActiveColor: "black",
+        borderInActiveColor: "black",
+    },
+    thumbButtonStyle: {
+        width: 42,
+        height: 42,
+        activeBackgroundColor: '#0066FFE5',
+        inActiveBackgroundColor: '#0066FFE5',
+        activeColor: 'black',
+        inActiveColor: 'black'
+    },
+    dataSearchResultContainer: {
+        flex: 12,
+        backgroundColor: 'red',
+        marginLeft: 3,
+        marginRight: 3,
+    },
+    tripsFlatListContainer: {
+        flex: 1,
+        backgroundColor: 'white',
+        margin: 3,
     },
     searchWrapper: {
         flex: 1,
