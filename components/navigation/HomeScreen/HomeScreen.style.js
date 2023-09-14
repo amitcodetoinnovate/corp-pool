@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         height: "100%",
-        marginLeft: "5%",
+        marginLeft: "6%",
     },
 });
 
