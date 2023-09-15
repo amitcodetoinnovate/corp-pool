@@ -10,7 +10,6 @@ import {
     Modal,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ListItem } from 'react-native-elements'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
@@ -33,13 +32,13 @@ const HomeScreen = () => {
             travelDate: new Date(),
             notifications: [
                 {
-                    name: 'Amy Farha',
+                    name: 'Vishwas Srivastava',
                     status: 'Pending',
                     type: 'car'
 
                 },
                 {
-                    name: 'Amy Farha',
+                    name: 'Anand Tiwary',
                     status: 'Pending',
                     type: 'car'
 
@@ -68,11 +67,6 @@ const HomeScreen = () => {
 
     notificationRender = ({ item }) => (
         <View style={styles.tripRowStyle}>
-            {
-            item.type == 'car' 
-                  ? <Ionicons name={'car'} size={20} width='10%' marginleft='3%' marginTop='1%' />   
-                  : null
-            }
             <Text style={styles.tripColumnStyle}>{item.name}</Text>
             <Text style={styles.tripColumnStyle}>{item.status}</Text>
             <Ionicons name={'thumbs-up-outline'} size={20} width='10%' marginleft='1%' marginTop='1%' />
@@ -81,28 +75,33 @@ const HomeScreen = () => {
 
     tripRender = ({ item }) => (
         <View style={styles.tripCardContainer}>
-            <Text style={styles.tripHeader}>{item.from} to {item.to}</Text>
 
-            <FlatList
-                keyExtractor={this.keyExtractor}
-                data={item.notifications}
-                renderItem={this.notificationRender}
-            />
-            
+            <TouchableOpacity>
+                <Text style={styles.tripHeader}>{item.from} to {item.to}</Text>
+                <FlatList
+                    keyExtractor={this.keyExtractor}
+                    data={item.notifications}
+                    renderItem={this.notificationRender}
+                />
+                <TouchableOpacity>
+                    <Text style={{ color: 'blue', fontSize: 10, marginTop: "2%" }}>
+                        More requests exists
+                    </Text>
+                </TouchableOpacity>
+            </TouchableOpacity>
+
         </View>
     );
 
     keyExtractor = (item, index) => index.toString()
 
     return (
-
         <View style={styles.container}>
-
             <View style={styles.welcomeMessageContainer}>
                 <Text style={styles.welcomeMessage}>Welcome {user}!</Text>
             </View>
 
-            <View style={styles.flatlistContainer} >
+            <View style={styles.flatlistContainer}>
                 <FlatList
                     keyExtractor={this.keyExtractor}
                     data={trips}
