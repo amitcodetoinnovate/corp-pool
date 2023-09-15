@@ -64,25 +64,22 @@ export const createTrips = async (startAddressDetails, destinationAddressDetails
     const body = {
         "TripId": emptyGUID,
         "Source": {
-            "Longitude": startAddressDetails.latitude,
+            "Longitude": startAddressDetails.longitude,
             "Latitude": startAddressDetails.latitude,
             "LocationName": startAddressDetails.address,
         },
         "Destination": {
-            "Longitude": destinationAddressDetails.latitude,
+            "Longitude": destinationAddressDetails.longitude,
             "Latitude": destinationAddressDetails.latitude,
             "LocationName": destinationAddressDetails.address,
         },
-        //"TripDate": formatDateToUTC(tripDate),
         "TripDate": tripDate,
         "RideType": rideType,
         "User": User,
         "TravellerCount": 1
     };
     try {
-        console.log(body);
         const response = await axios.post(endpoint, body);
-        console.log(response.data);
         return response.data;
     } catch (error) {
         console.error("There was an error sending the request", error);

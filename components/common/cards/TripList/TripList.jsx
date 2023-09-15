@@ -14,7 +14,6 @@ const TripList = ({ data, onTripSelected }) => {
                 onPress={() => {
                     onTripSelected(item.tripId);
                     setSelectedTripId(item.tripId);
-                    console.log(item.tripDate);
                 }}
                 style={[
                     styles.itemContainer,

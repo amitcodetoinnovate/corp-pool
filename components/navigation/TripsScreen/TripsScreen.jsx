@@ -21,14 +21,10 @@ const TripsScreen = ({ navigation }) => {
     const [destinationPlaceId, setDestinationPlaceId] = useState(null);
     const [selectedTripId, setSelectedTripId] = useState(null);
     const [carTripData, setCarTripData] = useState([]);
-    const [isSingleTrip, setIsSingleTrip] = useState(true);
     const { location: startLocation, isLoading: isLoadingStart } = useFetchLocationDetails(startPlaceId);
     const { location: destinationLocation, isLoading: isLoadingDestination } = useFetchLocationDetails(destinationPlaceId);
-
     const [startAddressDetails, setStartAddressDetails] = useState({ address: '', latitude: null, longitude: null, });
-
     const [destinationAddressDetails, setDestinationAddressDetails] = useState({ address: '', latitude: null, longitude: null, });
-
 
     useEffect(() => {
         if (startLocation) {
