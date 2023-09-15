@@ -46,7 +46,11 @@ const styles = StyleSheet.create({
     dataContainerActionScreen: {
         flex: 1,
         flexDirection: "row",
-        //backgroundColor: 'red',
+        // shadowColor: '#171717',
+        // shadowOffset: { width: -2, height: 4 },
+        // shadowOpacity: 0.2,
+        // backgroundColor: 'white',
+        // shadowRadius: 3,
     },
     dataContainerActionScreenButtonConatiner: {
         flex: 1,
@@ -78,6 +82,9 @@ const styles = StyleSheet.create({
 
 
     },
+    disabledButton: {
+        backgroundColor: 'grey',
+    },
     dataSearchResultScreen: {
         flex: 10,
         //backgroundColor: 'orange',
@@ -86,8 +93,16 @@ const styles = StyleSheet.create({
     dataSearchResultSwitchContainer: {
         flex: 1.2,
         marginTop: 4,
-        marginBottom: 5,
-        //backgroundColor: 'yellow',
+        marginBottom: 0,
+        paddingBottom: 2,
+        backgroundColor: 'white',
+        shadowColor: '#171717',
+        shadowOffset: { width: -2, height: 4 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        justifyContent: "center",
+        flexDirection: "row",
+        alignItems: "center",
 
     },
     dataSearchResultSwitchContainerStyle: {
@@ -117,9 +132,14 @@ const styles = StyleSheet.create({
     },
     dataSearchResultContainer: {
         flex: 12,
-        backgroundColor: 'red',
+        //backgroundColor: 'red',
         marginLeft: 3,
         marginRight: 3,
+        shadowColor: '#171717',
+        shadowOffset: { width: -2, height: 4 },
+        shadowOpacity: 0.2,
+        backgroundColor: 'white',
+        shadowRadius: 3,
     },
     tripsFlatListContainer: {
         flex: 1,
@@ -172,6 +192,13 @@ const styles = StyleSheet.create({
         borderRadius: SIZES.xSmall,
 
     },
+    loaderContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(255,255,255,0.7)',
+        opacity: 0.7,
+    }
 });
 
 export default styles;
