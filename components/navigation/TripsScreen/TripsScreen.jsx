@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Switch, TouchableOpacity, ActivityIndicator } from 'react-native'
 import LocationSearchComponent from '../../common/locationsearch/LocationSearch'
 import styles from './TripsScreen.style'
-import { searchTrips, createTrips } from './api'
+import { searchTrips, createTrips, joinTheRide } from './api'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DateTimePickerWithModal from '../../common/datetimepicker/dateTimePickerModal'
 import CarSwitchSelector from '../../common/carswitchselector/CarSwitchSelector'
@@ -57,7 +57,8 @@ const TripsScreen = ({ navigation }) => {
         try {
             setIsLoading(true);
             setSelectedTripId(null);
-            const data = await searchTrips(startAddressDetails, destinationAddressDetails);
+            const data = await searchTrips(startAddressDetails, destinationAddressDetails, selectedDate, rideType, JSON.parse(await AsyncStorage.getItem('user')));
+            console.log(JSON.stringify(data));
             setCarTripData(data);
             setIsLoading(false);
 
@@ -89,8 +90,19 @@ const TripsScreen = ({ navigation }) => {
             alert("Oops! Something went wrong. Please try again later.");
         }
     };
-    const joinTheRide = () => {
-        alert("I am not implemented yet");
+    const joinTheRideHandle = async () => {
+        try {
+            setIsLoading(true);
+            setSelectedTripId(null);
+            const data = await joinTheRide(selectedTripId, JSON.parse(await AsyncStorage.getItem('user')));
+            setCarTripData(data);
+            setIsLoading(false);
+
+        } catch (error) {
+            console.log(error);
+            setIsLoading(false);
+            alert("Oops! Something went wrong. Please try again later.");
+        }
     };
     const handleTripSelected = (tripId) => {
         setSelectedTripId(tripId);
@@ -121,11 +133,11 @@ const TripsScreen = ({ navigation }) => {
 
                     <TouchableOpacity onPress={createANewRide} style={styles.dataContainerActionScreenButtonConatiner}>
                         <View style={styles.dataContainerActionScreenButtonWrapper}>
-                            <Text style={styles.dataContainerActionButtonText}>Book Me A New Ride</Text>
+                            <Text style={styles.dataContainerActionButtonText}>Create A New Ride</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={joinTheRide}
+                        onPress={joinTheRideHandle}
                         style={styles.dataContainerActionScreenButtonConatiner}
                         disabled={!selectedTripId}
                     >

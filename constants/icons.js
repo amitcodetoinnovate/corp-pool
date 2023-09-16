@@ -9,6 +9,7 @@ import location from "../assets/icons/location.png";
 import chevronLeft from '../assets/icons/chevron-left.png'
 import chevronRight from '../assets/icons/chevron-right.png'
 import cancel from '../assets/icons/cancel.png'
+import microsoft from '../assets/icons/Microsoft_logo.svg.png'
 
 export default {
   heart,
@@ -21,5 +22,6 @@ export default {
   location,
   chevronLeft,
   chevronRight,
-  cancel
+  cancel,
+  microsoft
 };

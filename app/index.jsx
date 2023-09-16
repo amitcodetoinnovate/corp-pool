@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, SafeAreaView } from 'react-native';
+import { View, Text, SafeAreaView, Image } from 'react-native';
 import { Button as RNButton, Icon } from 'react-native-elements';
 import { Stack, useRouter } from 'expo-router';
 import * as WebBrowser from 'expo-web-browser';
@@ -8,6 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import WelcomeScreen from '../components/WelcomeScreen/WelcomeScreen';
 import MainContainer from '../components/navigation/MainContainer/MainContainer';
 import styles from './index.style';
+import { icons } from '../constants';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -39,7 +40,7 @@ const Home = () => {
     useEffect(() => {
         setTimeout(() => {
             setShowSplash(false);
-        }, 3000);
+        }, 7000);
     }, []);
 
     useEffect(() => {
@@ -64,19 +65,21 @@ const Home = () => {
     if (!isAuthenticated) {
         return (
             <SafeAreaView style={styles.container}>
+                <Stack.Screen
+                    options={{
+                        headerStyle: { backgroundColor: '#FFFFFF' },
+                        headerShadowVisible: false,
+                        headerTitle: ""
+                    }}
+                />
                 <View style={styles.header}>
-                    <Text style={styles.headerText}>Welcome to CorpPool</Text>
+                    <Text style={styles.headerText}>Welcome to Corp Pool</Text>
                 </View>
 
                 <View style={styles.body}>
                     <RNButton
                         icon={
-                            <Icon
-                                name="windows"
-                                type="font-awesome"
-                                size={24}
-                                color="white"
-                            />
+                            <Image source={icons.microsoft} style={styles.logo} />
                         }
                         title=" Login with Microsoft Account"
                         onPress={handleLogin}
@@ -88,6 +91,13 @@ const Home = () => {
     }
     return (
         <SafeAreaView style={styles.mainContainer}>
+            <Stack.Screen
+                options={{
+                    headerStyle: { backgroundColor: '#FFFFFF' },
+                    headerShadowVisible: false,
+                    headerTitle: ""
+                }}
+            />
             <MainContainer />
         </SafeAreaView>);
 };

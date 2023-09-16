@@ -2,19 +2,37 @@ import { StyleSheet } from "react-native";
 import { SIZES } from "../../constants";
 
 const styles = StyleSheet.create({
-    container: {
+    safeAreaContainer: {
         flex: 1,
-        justifyContent: 'center',
+        backgroundColor: '#FFFFFF',
+    },
+    logoContainer: {
+        paddingTop: 100,
+        flex: 1,
+        justifyContent: 'flex-start',
         alignItems: 'center',
-        borderRadius: SIZES.xSmall / 1.25,
+        borderRadius: 0,
         backgroundColor: '#FFFFFF', // or any color you want
     },
     logo: {
-        width: 200,
-        height: 200,
+        width: 300,
+        height: 100,
         resizeMode: 'cover',
-        borderRadius: SIZES.large / 0.25
+        borderRadius: 20
     },
+    animatedText: {
+        fontSize: 15,
+        fontWeight: 'bold',
+        marginTop: 20,
+    },
+    textContainer: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        borderRadius: 0,
+        backgroundColor: '#FFFFFF', // or any color you want
+        marginBottom: 200,
+    }
 });
 
 export default styles;
