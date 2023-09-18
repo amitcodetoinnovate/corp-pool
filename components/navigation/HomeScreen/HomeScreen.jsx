@@ -5,130 +5,32 @@ import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { extractAddressName } from '../../../utils/addressFormatter';
 import { formatDate } from '../../../utils/dateFormatter';
-import { getMyTrips } from './api'
+import { fetchMyTrips } from './api'
 
 const HomeScreen = () => {
 
     const [user, setUser] = useState();
     const [myTrips, setMyTrips] = useState([]);
+    const [selectedTripId, setSelectedTripId] = useState();
 
     useEffect(() => {
-        //fetchMyTrips()
+        getMyTrips()
         setUser('Vishwas')
 
     }, []);
 
-    const fetchMyTrips = async () => {
+    const getMyTrips = async () => {
         try {
-            const data = await getMyTrips('e07b05d9-7745-430c-a77e-5455aa6a3301');
+            const data = await fetchMyTrips('e07b05d9-7745-430c-a77e-5455aa6a3301');
             console.log(data)
+
             setMyTrips(data);
 
         } catch (error) {
             console.log(error);
-
             alert("Oops! Something went wrong. Please try again later.");
         }
     };
-
-    const trips = [
-        {
-            "trip": {
-                "tripId": "41fbd424-530b-4611-accb-fb7c269e7fa1",
-                "source": {
-                    "longitude": 0,
-                    "latitude": 0,
-                    "locationName": "Aparna Serene Park, Masjidbanda Road, Kondapur, Telangana 500084, India"
-                },
-                "destination": {
-                    "longitude": 0,
-                    "latitude": 0,
-                    "locationName": "Hyderabad Airport, Telangana 500019, India"
-                },
-                "tripDate": "2023-09-13T17:01:00+00:00",
-                "rideType": 0,
-                "user": null,
-                "travellerCount": 1,
-                "isActive": false,
-                "createdDate": "0001-01-01T00:00:00"
-            },
-            "tripUsers": [
-                {
-                    "userId": "a751f9bc-31be-455f-a107-0562df9f19b7",
-                    "firstName": "Vishwas",
-                    "lastName": "Srivastava",
-                    "email": null,
-                    "isActive": false,
-                    "createdDate": "0001-01-01T00:00:00",
-                    "memberType": 0,
-                    "requestState": 1
-                },
-                {
-                    "userId": "a751f9bc-31be-455f-a107-0562df9f19b7",
-                    "firstName": "Anand",
-                    "lastName": "Tiwary",
-                    "email": null,
-                    "isActive": false,
-                    "createdDate": "0001-01-01T00:00:00",
-                    "memberType": 2,
-                    "requestState": 1
-                },
-                {
-                    "userId": "a751f9bc-31be-455f-a107-0562df9f19b7",
-                    "firstName": "Amit",
-                    "lastName": "Verma",
-                    "email": null,
-                    "isActive": false,
-                    "createdDate": "0001-01-01T00:00:00",
-                    "memberType": 0,
-                    "requestState": 3
-                }
-            ]
-        },
-        {
-            "trip": {
-                "tripId": "41fbd424-530b-4611-accb-fb7c269e7fa1",
-                "source": {
-                    "longitude": 0,
-                    "latitude": 0,
-                    "locationName": "Aparna Sarovar, Nallagandla Road Kanchagachibowli, Post, HUDA Layout, Gopanpally, Gopanpalle, Telangana 500046, India"
-                },
-                "destination": {
-                    "longitude": 0,
-                    "latitude": 0,
-                    "locationName": "Manjeera Diamond Towers, Manjeera Diamond Towers, Tellapur, Nalagandla, Telangana 500019, India"
-                },
-                "tripDate": "2023-09-15T11:05:00+00:00",
-                "rideType": 0,
-                "user": null,
-                "travellerCount": 1,
-                "isActive": false,
-                "createdDate": "0001-01-01T00:00:00"
-            },
-            "tripUsers": [
-                {
-                    "userId": "a751f9bc-31be-455f-a107-0562df9f19b7",
-                    "firstName": "Amit",
-                    "lastName": "Verma",
-                    "email": null,
-                    "isActive": false,
-                    "createdDate": "0001-01-01T00:00:00",
-                    "memberType": 0,
-                    "requestState": 3
-                },
-                {
-                    "userId": "a751f9bc-31be-455f-a107-0562df9f19b7",
-                    "firstName": "Rajiv",
-                    "lastName": "Verma",
-                    "email": null,
-                    "isActive": false,
-                    "createdDate": "0001-01-01T00:00:00",
-                    "memberType": 2,
-                    "requestState": 1
-                }
-            ]
-        }
-    ]
 
     const renderRider = ({ item }) => {
         return (
@@ -147,7 +49,20 @@ const HomeScreen = () => {
 
         <View style={styles.tripCardContainer}>
 
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => {
+                    if (item.trip.tripId === selectedTripId) {
+                        setSelectedTripId(null);
+
+                    } else {
+                        setSelectedTripId(item.trip.tripId);
+                    }
+                }}
+                style={[
+                    styles.itemContainer,
+                    { backgroundColor: item.trip.tripId === selectedTripId ? '#0066FFE5' : '#4F4F54' }
+                ]}
+            >
 
                 <View style={styles.adrressDateContainer}>
                     <View style={styles.addressContainer}>
@@ -181,9 +96,9 @@ const HomeScreen = () => {
 
             <View style={styles.flatlistContainer}>
                 <FlatList
-                    data={trips}
+                    data={myTrips}
                     renderItem={renderTrip}
-                    keyExtractor={item => item.trip.tripId}
+                    keyExtractor={(item, index) => item.trip.tripId}
                 />
             </View>
 
