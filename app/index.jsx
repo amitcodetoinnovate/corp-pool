@@ -40,7 +40,7 @@ const Home = () => {
     useEffect(() => {
         setTimeout(() => {
             setShowSplash(false);
-        }, 7000);
+        }, 5000);
     }, []);
 
     useEffect(() => {
@@ -74,11 +74,6 @@ const Home = () => {
                 />
                 <View style={styles.header}>
                     <Text style={styles.headerText}>Welcome to Corp Pool</Text>
-                </View>
-                <View style={styles.header}>
-                    <TouchableOpacity onPress={() => router.push(`/MyRideDetails/${booking}`)}>
-                        <Text style={styles.headerText}>Go To Booking Details</Text>
-                    </TouchableOpacity>
                 </View>
 
                 <View style={styles.body}>

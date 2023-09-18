@@ -73,14 +73,17 @@ const BookMyRide = ({ tripId, source, destination }) => {
                 <View style={styles.imageContainer}>
                     <Image source={icons.uber} style={styles.logo} />
                 </View>
-                <TouchableOpacity onPress={() => promptAsync()}>
+                <View style={styles.rideFairContainer}>
+                    <Text style={styles.rideText}>20 Rs</Text>
+                </View>
+                {/* <TouchableOpacity onPress={() => promptAsync()}>
                     <View style={styles.rideFairContainer}>
                         <Text style={styles.rideFair}>Get Uber Fare</Text>
                     </View>
                 </TouchableOpacity>
                 <View style={styles.rideFairContainer}>
                     <Text style={styles.rideText}>{uberFare ? `${uberFare} Rs` : 'Fetching...'}</Text>
-                </View>
+                </View> */}
             </View>
             <View style={styles.BookingTypeContainer}>
                 <View style={styles.imageContainer}>
