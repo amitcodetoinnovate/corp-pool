@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, SafeAreaView, Image } from 'react-native';
+import { View, Text, SafeAreaView, Image, Touchable, TouchableOpacity } from 'react-native';
 import { Button as RNButton, Icon } from 'react-native-elements';
 import { Stack, useRouter } from 'expo-router';
 import * as WebBrowser from 'expo-web-browser';
@@ -22,7 +22,7 @@ const Home = () => {
     const router = useRouter();
     const [showSplash, setShowSplash] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+    const booking = "93179ABA-27BB-435B-B5F7-BFD92428D6B5";
     const [request, response, promptAsync] = useAuthRequest(
         {
             clientId: 'e806ef08-3a6f-41c6-a269-099936d61b2e',
@@ -74,6 +74,11 @@ const Home = () => {
                 />
                 <View style={styles.header}>
                     <Text style={styles.headerText}>Welcome to Corp Pool</Text>
+                </View>
+                <View style={styles.header}>
+                    <TouchableOpacity onPress={() => router.push(`/MyRideDetails/${booking}`)}>
+                        <Text style={styles.headerText}>Go To Booking Details</Text>
+                    </TouchableOpacity>
                 </View>
 
                 <View style={styles.body}>
