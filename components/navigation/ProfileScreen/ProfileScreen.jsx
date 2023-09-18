@@ -3,6 +3,7 @@ import { View, Text, Image, ActivityIndicator } from 'react-native';
 import useUserProfile from '../../../hooks/useUserProfile';
 import styles from './ProfileScreen.style';
 
+
 const ProfileScreen = () => {
     const { userName, profilePicContent, profileData, isLoading } = useUserProfile();  // Use the custom hook here
 

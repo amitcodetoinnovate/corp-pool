@@ -3,8 +3,8 @@ import { COLORS, FONT, SIZES } from "../../../constants";
 
 const styles = StyleSheet.create({
     container: {
-        flex:1,
-        flexDirection:'colum',
+        flex: 1,
+        flexDirection: 'colum',
         shadowColor: 'pink',
         shadowOffset: { width: -2, height: 4 },
         shadowOpacity: 0.2,
@@ -12,10 +12,11 @@ const styles = StyleSheet.create({
         shadowRadius: 3,
     },
     welcomeMessageContainer: {
-        flex:1,
+        height: "10%",
         marginTop: "2%",
-        flexDirection:'row',
-        justifyContent:"flex-start",
+        flexDirection: 'row',
+        justifyContent: "center",
+        alignItems: "center",
         backgroundColor: '#e9e9ec',
         //backgroundColor: 'yellow',
         marginLeft: 4,
@@ -31,7 +32,8 @@ const styles = StyleSheet.create({
         marginLeft: "2%"
     },
     flatlistContainer: {
-        flex: 10,
+        height: "80%",
+        marginVertical: "5%",
         //backgroundColor: 'black'
     },
     tripCardContainer: {

@@ -6,24 +6,27 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { extractAddressName } from '../../../utils/addressFormatter';
 import { formatDate } from '../../../utils/dateFormatter';
 import { fetchMyTrips, updateMyTrip } from './api'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HomeScreen = () => {
 
     const router = useRouter();
-    const [user, setUser] = useState();
+    const [user, setUser] = useState(null);
     const [myTrips, setMyTrips] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoadingThePage, setIsLoading] = useState(false);
 
     useEffect(() => {
-        getMyTrips()
-        setUser('Vishwas')
-
+        (async () => {
+            const userInfo = JSON.parse(await AsyncStorage.getItem('user'));
+            setUser(userInfo);
+            getMyTrips(userInfo.userId);
+        })();
     }, []);
 
-    const getMyTrips = async () => {
+    const getMyTrips = async (userId) => {
         try {
-            const data = await fetchMyTrips('3876D113-B5EA-4A29-AD8E-F369112848B5');
-            console.log(data)
+            setIsLoading(true);
+            const data = await fetchMyTrips(userId);
             setMyTrips(data);
             setIsLoading(false);
 
@@ -33,7 +36,7 @@ const HomeScreen = () => {
         }
     };
 
-    const trips = [{ "trip": { "tripId": "02adef27-713d-4ddc-ada0-3853e0462376", "source": { "longitude": 78.3408623, "latitude": 17.4295962, "locationName": "Microsoft Campus Building 3, Microsoft Campus Building 3, Gachibowli, Hyderabad, Telangana 500032, India" }, "destination": { "longitude": 78.3374702, "latitude": 17.4640199, "locationName": "Aparna Serene Park, SY.NO 146 SBI OFFICERS QUARTERS, MASJID BANDA, KONDAPUR, SERLINGAM PALLY, Aparna Serene Park, APARNA SERENE PARK, Masjid Banda Main Rd, SBI Officers Quarters, Gachibowli, Kondapur, Hyderabad, Telangana 500084, India" }, "tripDate": "2023-09-18T10:39:00", "rideType": 0, "user": null, "travellerCount": 1, "isActive": false, "createdDate": "0001-01-01T00:00:00" }, "tripUsers": [{ "userId": "3876d113-b5ea-4a29-ad8e-f369112848b5", "firstName": "Kapil", "lastName": "Dalal", "email": null, "isActive": false, "createdDate": "0001-01-01T00:00:00", "memberType": 0, "requestState": 0, "approvalId": "00000000-0000-0000-0000-000000000000" }, { "userId": "a751f9bc-31be-455f-a107-0562df9f19b7", "firstName": "Amit", "lastName": "Verma", "email": null, "isActive": false, "createdDate": "0001-01-01T00:00:00", "memberType": 0, "requestState": 0, "approvalId": "00000000-0000-0000-0000-000000000001" }] }]
+    // const trips = [{ "trip": { "tripId": "02adef27-713d-4ddc-ada0-3853e0462376", "source": { "longitude": 78.3408623, "latitude": 17.4295962, "locationName": "Microsoft Campus Building 3, Microsoft Campus Building 3, Gachibowli, Hyderabad, Telangana 500032, India" }, "destination": { "longitude": 78.3374702, "latitude": 17.4640199, "locationName": "Aparna Serene Park, SY.NO 146 SBI OFFICERS QUARTERS, MASJID BANDA, KONDAPUR, SERLINGAM PALLY, Aparna Serene Park, APARNA SERENE PARK, Masjid Banda Main Rd, SBI Officers Quarters, Gachibowli, Kondapur, Hyderabad, Telangana 500084, India" }, "tripDate": "2023-09-18T10:39:00", "rideType": 0, "user": null, "travellerCount": 1, "isActive": false, "createdDate": "0001-01-01T00:00:00" }, "tripUsers": [{ "userId": "3876d113-b5ea-4a29-ad8e-f369112848b5", "firstName": "Kapil", "lastName": "Dalal", "email": null, "isActive": false, "createdDate": "0001-01-01T00:00:00", "memberType": 0, "requestState": 0, "approvalId": "00000000-0000-0000-0000-000000000000" }, { "userId": "a751f9bc-31be-455f-a107-0562df9f19b7", "firstName": "Amit", "lastName": "Verma", "email": null, "isActive": false, "createdDate": "0001-01-01T00:00:00", "memberType": 0, "requestState": 0, "approvalId": "00000000-0000-0000-0000-000000000001" }] }]
 
     const approveRejectRequest = (item, status) => {
 
@@ -115,10 +118,11 @@ const HomeScreen = () => {
     return (
         <View style={styles.container}>
             <View style={styles.welcomeMessageContainer}>
-                <Text style={styles.welcomeMessage}>Welcome {user}!</Text>
+
+                <Text style={styles.welcomeMessage}>Welcome {user.firstName}!</Text>
             </View>
 
-            {isLoading ? (
+            {isLoadingThePage ? (
                 <View style={styles.loaderContainer}>
                     <ActivityIndicator size="large" color="#0000ff" />
                 </View>) :
