@@ -11,7 +11,7 @@ import { COLORS, FONT, SIZES } from "../../../constants";
 import useUserProfile from '../../../hooks/useUserProfile';
 
 const homeName = "Home";
-const tripsName = "Trips";
+const tripsName = "Trip";
 const profileName = "Profile";
 
 const Tab = createBottomTabNavigator();
@@ -27,7 +27,7 @@ const MainContainer = () => {
                     tabBarActiveTintColor: '#100c07',
                     tabBarInactiveTintColor: '#100c07',
                     tabBarStyle: {
-                        backgroundColor: "#eeeee4",
+                        backgroundColor: "white",
                         borderTopWidth: 0,
                         elevation: 0,
                         shadowOpacity: 0,
@@ -46,18 +46,8 @@ const MainContainer = () => {
                             iconName = focused ? 'car-sport'
                                 : 'car-sport-outline';
                         } else if (rn === profileName) {
-                            if (isLoading) {
-                                // If still loading, maybe return a placeholder
-                                return <Text>Loading...</Text>
-                            }
-                            return (
-                                // <View style={styles.profilePicContent}>
-                                <Image
-                                    source={profilePicContent ? { uri: profilePicContent } : undefined}
-                                    style={{ width: 25, height: 25 }}
-                                />
-                                // </View>
-                            );
+                            iconName = focused ? 'person-sharp'
+                                : 'person-outline';
                         }
                         return <Ionicons name={iconName} size={size} color={color} />;
                     },

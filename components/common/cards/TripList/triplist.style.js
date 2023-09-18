@@ -47,14 +47,9 @@ const styles = StyleSheet.create({
     },
     riderNameContainer: {
         flex: 1,
-    },
-    riderStatusContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        alignSelf: 'center',
-        justifyContent: 'center',
-        alignContent: 'center',
-        alignItems: 'center',
+        paddingLeft: 25,
+        alignItems: 'flex-start',
+        paddingVertical: 5,
     },
     title: {
         fontSize: 15,
@@ -62,7 +57,7 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     riderName: {
-        fontSize: 12,
+        fontSize: 15,
         color: 'black',
         fontWeight: 'bold',
     },

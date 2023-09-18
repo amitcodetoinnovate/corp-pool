@@ -1,9 +1,12 @@
 import { StyleSheet } from "react-native";
+import { SIZES } from "../constants";
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#FFFFFF',
     },
     header: {
         marginBottom: 20
@@ -16,11 +19,18 @@ const styles = StyleSheet.create({
         width: '80%'
     },
     azureButton: {
-        backgroundColor: '#0078d7',
+        backgroundColor: 'black',
+        color: 'black',
     },
     mainContainer: {
         flex: 1,
-        backgroundColor: '#eeeee4',
-    }
+        backgroundColor: '#FFFFFF',
+    },
+    logo: {
+        width: 20,
+        height: 20,
+        resizeMode: 'cover',
+        borderRadius: 0
+    },
 });
 export default styles;

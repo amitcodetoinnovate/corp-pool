@@ -11,9 +11,9 @@ import {
 import axios from 'axios';
 import styles from './locationSearch.style';
 
-const LocationSearchComponent = ({ onLocationSelected, iconName }) => {
+const LocationSearchComponent = ({ onLocationSelected, iconName, locationTextInput }) => {
     const [input, setInput] = useState(null);
-    const [locationText, setLocationText] = useState(null);
+    const [locationText, setLocationText] = useState(locationTextInput);
     const [predictions, setPredictions] = useState([]);
     const [isModalVisible, setModalVisible] = useState(false);
 

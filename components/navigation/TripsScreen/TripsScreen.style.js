@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     queryContainer: {
         width: "98%",
         height: "100%",
-        marginTop: 10,
+        marginTop: 0,
         paddingTop: 0,
         backgroundColor: '#e9e9ec',
         //backgroundColor: 'yellow',
@@ -40,13 +40,10 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         marginTop: 1,
         padding: 0,
-        //backgroundColor: 'pink',
-
     },
     dataContainerActionScreen: {
         flex: 1,
         flexDirection: "row",
-        //backgroundColor: 'red',
     },
     dataContainerActionScreenButtonConatiner: {
         flex: 1,
@@ -60,14 +57,12 @@ const styles = StyleSheet.create({
         shadowRadius: 3,
     },
     dataContainerActionScreenButtonWrapper: {
-        //width: "50%",
         backgroundColor: '#0066FFE5',
         borderRadius: 15,
         marginLeft: 30,
 
     },
     dataContainerActionButtonText: {
-        //backgroundColor: 'white',
         paddingTop: 4,
         paddingLeft: 10,
         paddingRight: 10,
@@ -78,16 +73,25 @@ const styles = StyleSheet.create({
 
 
     },
+    disabledButton: {
+        backgroundColor: 'grey',
+    },
     dataSearchResultScreen: {
         flex: 10,
-        //backgroundColor: 'orange',
-
     },
     dataSearchResultSwitchContainer: {
         flex: 1.2,
         marginTop: 4,
-        marginBottom: 5,
-        //backgroundColor: 'yellow',
+        marginBottom: 0,
+        paddingBottom: 2,
+        backgroundColor: 'white',
+        shadowColor: '#171717',
+        shadowOffset: { width: -2, height: 4 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        justifyContent: "center",
+        flexDirection: "row",
+        alignItems: "center",
 
     },
     dataSearchResultSwitchContainerStyle: {
@@ -107,19 +111,15 @@ const styles = StyleSheet.create({
         borderActiveColor: "black",
         borderInActiveColor: "black",
     },
-    thumbButtonStyle: {
-        width: 42,
-        height: 42,
-        activeBackgroundColor: '#0066FFE5',
-        inActiveBackgroundColor: '#0066FFE5',
-        activeColor: 'black',
-        inActiveColor: 'black'
-    },
     dataSearchResultContainer: {
         flex: 12,
-        backgroundColor: 'red',
         marginLeft: 3,
         marginRight: 3,
+        shadowColor: '#171717',
+        shadowOffset: { width: -2, height: 4 },
+        shadowOpacity: 0.2,
+        backgroundColor: 'white',
+        shadowRadius: 3,
     },
     tripsFlatListContainer: {
         flex: 1,
@@ -172,6 +172,13 @@ const styles = StyleSheet.create({
         borderRadius: SIZES.xSmall,
 
     },
+    loaderContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(255,255,255,0.7)',
+        opacity: 0.7,
+    }
 });
 
 export default styles;

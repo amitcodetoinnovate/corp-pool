@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const useUserProfile = () => {
     const [userName, setUserName] = useState('');
+    const [profileData, setProfileData] = useState({});
     const [profilePicContent, setProfilePicContent] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -19,7 +20,7 @@ const useUserProfile = () => {
             });
 
             const profileData = await response.json();
-
+            setProfileData(profileData);
             setUserName(profileData.givenName || 'Anonymous');
             await AsyncStorage.setItem('user', JSON.stringify({
                 userId: profileData.id,
@@ -49,7 +50,7 @@ const useUserProfile = () => {
         fetchProfile();
     }, []);
 
-    return { userName, profilePicContent, isLoading };
+    return { userName, profilePicContent, profileData, isLoading };
 };
 
 export default useUserProfile;
