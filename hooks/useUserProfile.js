@@ -24,7 +24,7 @@ const useUserProfile = () => {
             setUserName(profileData.givenName || 'Anonymous');
             await AsyncStorage.setItem('user', JSON.stringify({
                 userId: profileData.id,
-                fistName: profileData.givenName,
+                firstName: profileData.givenName,
                 lastName: profileData.surname,
                 email: profileData.userPrincipalName,
 

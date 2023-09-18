@@ -58,7 +58,6 @@ const TripsScreen = ({ navigation }) => {
             setIsLoading(true);
             setSelectedTripId(null);
             const data = await searchTrips(startAddressDetails, destinationAddressDetails, selectedDate, rideType, JSON.parse(await AsyncStorage.getItem('user')));
-            console.log(JSON.stringify(data));
             setCarTripData(data);
             setIsLoading(false);
 

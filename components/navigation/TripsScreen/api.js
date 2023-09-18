@@ -47,13 +47,14 @@ export const searchTrips = async (startAddressDetails, destinationAddressDetails
             "LocationName": destinationAddressDetails.address,
         },
         "TripDate": tripDate,
-        "RideType": rideType == 'offer' ? 1 : 2,
-        "User": null,
+        "RideType": rideType == 'offer' ? 0 : 1,
+        "User": user,
         "TravellerCount": 1
     };
     try {
         //console.log(JSON.stringify(body));
         const response = await axios.post(endpoint, body);
+        //console.log(JSON.stringify(response.data));
         return response.data;
     } catch (error) {
         console.error("There was an error sending the request", error);

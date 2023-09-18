@@ -24,6 +24,7 @@ const MyRideDetails = () => {
             setData(response);
             setIsLoading(false);
         } catch (error) {
+            setIsLoading(false);
             console.log(error);
         }
     };
