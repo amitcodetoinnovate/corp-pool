@@ -31,14 +31,14 @@ const styles = StyleSheet.create({
         marginLeft: "2%"
     },
     flatlistContainer: {
-        flex: 4,
+        flex: 10,
         //backgroundColor: 'black'
     },
     tripCardContainer: {
         width: "98%",
         height: "100%",
         marginTop: "1%",
-        backgroundColor: '#4F4F54',
+        backgroundColor: 'black',
         marginLeft: 4,
         //marginBottom: 5,
         paddingBottom: 10,
@@ -46,6 +46,10 @@ const styles = StyleSheet.create({
         //shadowColor: '#171717',
         //shadowOffset: { width: -2, height: 4 },
         //shadowOpacity: 1,
+        //shadowRadius: 3,
+        //shadowColor: '#171717',
+        //shadowOffset: { width: -2, height: 4 },
+        //shadowOpacity: 0.2,
         //shadowRadius: 3,
         borderRadius: SIZES.xSmall,
     },
@@ -72,18 +76,55 @@ const styles = StyleSheet.create({
         marginLeft: "6%",
     },
     adrressDateContainer: {
-        flex: 1,
-        padding: 10,
+        flex: 'auto',
         flexDirection: 'row',
         justifyContent: 'space-between',
+        marginTop: 0,
+        backgroundColor: '#0066FFE5',
+        backgroundColor: 'black',
+        paddingVertical: 20,
+        marginHorizontal: 10,
+        borderRadius: 8,
+        //shadowColor: '#171717',
+        //shadowOffset: { width: -2, height: 4 },
+        //shadowOpacity: 0.2,
+        //shadowRadius: 3,
     },
-    addressContainer: {
+    dateContainerAndLogoContainer: {
         flex: 1,
         flexDirection: 'column',
     },
+    logoContainer: {
+        flex: 'auto',
+        flexDirection: 'row',
+        alignContent: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    flatListContainer: {
+        flex: 'auto',
+        marginLeft: 10,
+        marginTop: 10,
+        marginRight: 10,
+        backgroundColor: 'white',
+    },
+    addressContainer: {
+        flex: 'auto',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        alignContent: 'center',
+        alignItems: 'center',
+        paddingRight: 5,
+        width: '20%',
+
+    },
     dateContainer: {
         flex: 1,
-        alignSelf: 'center',
+        width: '100%',
+        flexDirection: 'row',
+        alignContent: 'flex-end',
+        justifyContent: 'center',
+        alignItems: 'flex-end',
     },
     ridersContainer: {
         flex: 1,
@@ -108,10 +149,11 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         alignItems: 'center',
     },
-    title: {
+    addressTextFormat: {
         fontSize: 15,
         fontWeight: 'bold',
         color: 'white',
+        paddingLeft: 10,
     },
     riderName: {
         fontSize: 12,
@@ -119,10 +161,17 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     date: {
-        fontSize: 12,
+        fontSize: 10,
         color: 'white',
         fontWeight: 'bold',
     },
+    loaderContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(255,255,255,0.7)',
+        opacity: 0.7,
+    }
 });
 
 export default styles;

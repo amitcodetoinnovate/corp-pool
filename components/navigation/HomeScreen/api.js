@@ -12,3 +12,18 @@ export const fetchMyTrips = async (userId) => {
         throw error;
     }
 };
+
+export const updateMyTrip = async (approvalId, state) => {
+    const endpoint = `${BASE_URL}/ApproveRejectTrip`;
+    const body = {
+        "ApprovalId": approvalId,
+        "RequestState": state
+    };
+    try {
+        const response = await axios.post(endpoint, body);
+        return response.data;
+    } catch (error) {
+        console.error("There was an error sending the request", error);
+        throw error;
+    }
+};
