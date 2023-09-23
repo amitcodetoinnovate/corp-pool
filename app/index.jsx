@@ -9,6 +9,18 @@ import WelcomeScreen from '../components/WelcomeScreen/WelcomeScreen';
 import MainContainer from '../components/navigation/MainContainer/MainContainer';
 import styles from './index.style';
 import { icons } from '../constants';
+import { useUser } from '../contexts/UserContext';
+import { UserProvider } from '../contexts/UserContext';
+
+
+const App = () => {
+    return (
+        <UserProvider>
+            <Home />
+        </UserProvider>
+    );
+};
+
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -19,6 +31,7 @@ const discovery = {
 };
 
 const Home = () => {
+    const { setUserToken } = useUser();
     const router = useRouter();
     const [showSplash, setShowSplash] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -47,6 +60,7 @@ const Home = () => {
         if (response?.type === 'success') {
             const { access_token } = response.params;
             setIsAuthenticated(true);
+            setUserToken(access_token);
             // Store the access token using AsyncStorage
             (async () => {
                 await AsyncStorage.setItem('userToken', access_token);
@@ -102,4 +116,5 @@ const Home = () => {
         </SafeAreaView>);
 };
 
-export default Home;
+export default App;
+
