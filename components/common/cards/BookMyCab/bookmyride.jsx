@@ -74,7 +74,7 @@ const BookMyRide = ({ tripId, source, destination }) => {
                     <Image source={icons.uber} style={styles.logo} />
                 </View>
                 <View style={styles.rideFairContainer}>
-                    <Text style={styles.rideText}>20 Rs</Text>
+                    <Text style={styles.rideText}>Rs 144</Text>
                 </View>
                 {/* <TouchableOpacity onPress={() => promptAsync()}>
                     <View style={styles.rideFairContainer}>
@@ -90,7 +90,7 @@ const BookMyRide = ({ tripId, source, destination }) => {
                     <Image source={icons.ola} style={styles.logo} />
                 </View>
                 <View style={styles.rideFairContainer}>
-                    <Text style={styles.rideText}>20 Rs</Text>
+                    <Text style={styles.rideText}>Rs 150</Text>
                 </View>
             </View>
             <View style={styles.BookingTypeContainer}>
@@ -99,7 +99,7 @@ const BookMyRide = ({ tripId, source, destination }) => {
                     <Image source={icons.meru} style={styles.logo} />
                 </View>
                 <View style={styles.rideFairContainer}>
-                    <Text style={styles.rideText}>23 Rs</Text>
+                    <Text style={styles.rideText}>Rs 180</Text>
                 </View>
             </View>
         </View>

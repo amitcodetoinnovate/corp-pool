@@ -61,13 +61,15 @@ export const searchTrips = async (startAddressDetails, destinationAddressDetails
         throw error;
     }
 };
-export const joinTheRide = async (requestedTripId, user) => {
+export const joinTheRide = async (requestedTripId, user, rideType) => {
     const endpoint = `${BASE_URL}/JoinTrip`;
     const body = {
-        "RequestedTripId": requestedTripId,
-        "UserId": user.userId,
+        "DestinationTripId": requestedTripId,
+        "TripUser": user,
+        "RideType": rideType == 'offer' ? 0 : 1,
     };
     try {
+        console.log(JSON.stringify(body));
         const response = await axios.post(endpoint, body);
         return response.data;
     } catch (error) {

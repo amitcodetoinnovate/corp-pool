@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, Image, ActivityIndicator } from 'react-native';
-import useUserProfile from '../../../hooks/useUserProfile';
+import { useUser } from '../../../contexts/UserContext';
 import styles from './ProfileScreen.style';
 
 
 const ProfileScreen = () => {
-    const { userName, profilePicContent, profileData, isLoading } = useUserProfile();  // Use the custom hook here
+    const { profileData, isLoading } = useUser();
 
     return (
         <View style={styles.container}>
@@ -18,10 +18,10 @@ const ProfileScreen = () => {
                     <View style={styles.profileImageContainer}>
                         <View style={styles.avatarContainer}>
                             <Image
-                                source={{ uri: profilePicContent ? profilePicContent : 'https://bootdey.com/img/Content/avatar/avatar6.png' }}
+                                source={{ uri: profileData.profilePicContent ? profileData.profilePicContent : 'https://bootdey.com/img/Content/avatar/avatar6.png' }}
                                 style={styles.avatar}
                             />
-                            <Text style={[styles.name, styles.textWithShadow]}>{profileData.givenName}</Text>
+                            <Text style={[styles.name, styles.textWithShadow]}>{profileData.displayName}</Text>
                         </View>
                     </View>
                     <View style={styles.content}>

@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         alignItems: 'center',
         paddingRight: 5,
-        width: '20%',
+        width: '25%',
 
     },
     dateContainer: {
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignSelf: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         alignContent: 'center',
         alignItems: 'center',
     },

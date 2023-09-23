@@ -12,8 +12,12 @@ import { checkPropertiesNotEmpty } from '../../../utils/validations';
 import Toggle from "react-native-toggle-element";
 import CarPoolList from '../../common/cards/CarPoolList/CarPoolList';
 import TripList from '../../common/cards/TripList/TripList';
+import { getUser } from '../../../utils/userObject';
+import { useUser } from '../../../contexts/UserContext';
 
 const TripsScreen = ({ navigation }) => {
+    const { profileData, _ } = useUser();
+    const user = getUser(profileData);
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [rideType, setRideType] = useState('offer');
     const [isLoading, setIsLoading] = useState(false);
@@ -57,7 +61,10 @@ const TripsScreen = ({ navigation }) => {
         try {
             setIsLoading(true);
             setSelectedTripId(null);
-            const data = await searchTrips(startAddressDetails, destinationAddressDetails, selectedDate, rideType, JSON.parse(await AsyncStorage.getItem('user')));
+            const data = await searchTrips(startAddressDetails, destinationAddressDetails, selectedDate, rideType, user);
+            if (data.length === 0) {
+                alert("No trips found for the given details");
+            }
             setCarTripData(data);
             setIsLoading(false);
 
@@ -80,7 +87,7 @@ const TripsScreen = ({ navigation }) => {
         try {
             setIsLoading(true);
 
-            const data = await createTrips(startAddressDetails, destinationAddressDetails, selectedDate, 1, JSON.parse(await AsyncStorage.getItem('user')));
+            const data = await createTrips(startAddressDetails, destinationAddressDetails, selectedDate, 1, user, rideType);
             setIsLoading(false);
             alert("Your ride has been created successfully");
         } catch (error) {
@@ -93,7 +100,7 @@ const TripsScreen = ({ navigation }) => {
         try {
             setIsLoading(true);
             setSelectedTripId(null);
-            const data = await joinTheRide(selectedTripId, JSON.parse(await AsyncStorage.getItem('user')));
+            const data = await joinTheRide(selectedTripId, user, rideType);
             setCarTripData(data);
             setIsLoading(false);
 
