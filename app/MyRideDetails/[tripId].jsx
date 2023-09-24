@@ -14,13 +14,28 @@ const MyRideDetails = () => {
     const [data, setData] = useState([]);
     const router = useRouter();
     useEffect(() => { getTripDetails(); }, []);
+
+    const getIconName = (item) => {
+        if (item.requestState && item.requestState === 1) {
+            return "checkmark-circle"
+        }
+        else if (item.requestState && item.requestState === 2) {
+            return "close-circle";
+        }
+        else if (item.requestState && item.requestState === 3) {
+            return "ellipsis-horizontal-circle";
+        } else {
+            return "checkmark-circle"
+        }
+    };
+
     const getTripDetails = async () => {
         try {
             const response = await getMyTrips(params.tripId);
-            response.trip.source.latitude = 17.464305;
-            response.trip.source.longitude = 78.3094338;
-            response.trip.destination.latitude = 17.2402633;
-            response.trip.destination.longitude = 78.4293851;
+            // response.trip.source.latitude = 17.464305;
+            // response.trip.source.longitude = 78.3094338;
+            // response.trip.destination.latitude = 17.2402633;
+            // response.trip.destination.longitude = 78.4293851;
             setData(response);
             setIsLoading(false);
         } catch (error) {
@@ -36,7 +51,7 @@ const MyRideDetails = () => {
                     <Text style={styles.riderName}>{item.firstName + " " + item.lastName}</Text>
                 </View>
                 <View style={styles.riderStatusContainer}>
-                    {item.requestState === 1 ? <Ionicons name="checkmark-circle" size={20} color="green" /> : <Ionicons name="ellipsis-horizontal-circle-outline" size={20} color="red" />}
+                    <Ionicons name={getIconName(item)} size={20} color="grey" />
                 </View>
             </View>
         );

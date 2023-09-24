@@ -30,10 +30,8 @@ const BookMyRide = ({ tripId, source, destination }) => {
     );
 
     useEffect(() => {
-        console.log(response);
         if (response?.type === 'success') {
             const { access_token } = response.params;
-            console.log(access_token);
             setAccessToken(access_token);
 
             (async () => {

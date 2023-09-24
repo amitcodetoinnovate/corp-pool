@@ -52,9 +52,7 @@ export const searchTrips = async (startAddressDetails, destinationAddressDetails
         "TravellerCount": 1
     };
     try {
-        //console.log(JSON.stringify(body));
         const response = await axios.post(endpoint, body);
-        //console.log(JSON.stringify(response.data));
         return response.data;
     } catch (error) {
         console.error("There was an error sending the request", error);
@@ -69,7 +67,6 @@ export const joinTheRide = async (requestedTripId, user, rideType) => {
         "RideType": rideType == 'offer' ? 0 : 1,
     };
     try {
-        console.log(JSON.stringify(body));
         const response = await axios.post(endpoint, body);
         return response.data;
     } catch (error) {

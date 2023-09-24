@@ -19,7 +19,7 @@ const TripsScreen = ({ navigation }) => {
     const { profileData, _ } = useUser();
     const user = getUser(profileData);
     const [selectedDate, setSelectedDate] = useState(new Date());
-    const [rideType, setRideType] = useState('offer');
+    const [rideType, setRideType] = useState('need');
     const [isLoading, setIsLoading] = useState(false);
     const [startPlaceId, setStartPlaceId] = useState(null);
     const [destinationPlaceId, setDestinationPlaceId] = useState(null);

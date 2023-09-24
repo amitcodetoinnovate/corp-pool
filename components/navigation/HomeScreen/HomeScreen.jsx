@@ -7,15 +7,17 @@ import { extractAddressName } from '../../../utils/addressFormatter';
 import { formatDate } from '../../../utils/dateFormatter';
 import { fetchMyTrips, updateMyTrip } from './api'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getUser } from '../../../utils/userObject';
 import { useUser } from '../../../contexts/UserContext';
 
-const HomeScreen = () => {
 
+const HomeScreen = () => {
     const router = useRouter();
     const [user, setUser] = useState(null);
     const [myTrips, setMyTrips] = useState([]);
     const [isLoadingThePage, setIsLoading] = useState(false);
     const { profileData, isLoading } = useUser();
+    const userLoggedIn = getUser(profileData);
 
     useEffect(() => {
         getMyTrips(profileData.id);
@@ -34,11 +36,37 @@ const HomeScreen = () => {
         }
     };
 
-    const approveRejectRequest = (item, status) => {
+    const approveRejectRequest = async (item, status) => {
 
         var requestState = status == "approved" ? 1 : 2;
-        updateMyTrip(item.approvalId, requestState)
+
+        try {
+            setIsLoading(true);
+            const data = await updateMyTrip(item.approvalId, requestState, userLoggedIn.userId);
+            await getMyTrips(profileData.id);
+            alert("Request " + status + " successfully");
+
+        } catch (error) {
+            console.log(error);
+            alert("Oops! Something went wrong. Please try again later.");
+        } finally {
+            setIsLoading(false);
+        }
     }
+
+    const getIconName = (item) => {
+        if (item.requestState === 1) {
+            return "checkmark-circle"
+        }
+        else if (item.requestState === 2) {
+            return "close-circle";
+        }
+        else if (item.requestState === 3) {
+            return "ellipsis-horizontal-circle";
+        } else {
+            return "infinite-outline";
+        }
+    };
 
     const renderRider = ({ item }) => {
         return (
@@ -48,34 +76,34 @@ const HomeScreen = () => {
                 </View>
                 <View style={styles.riderStatusContainer}>
                     {
-                        item.requestState === 1
-                            ? <Ionicons name="checkmark-circle" size={20} color="green" />
-                            :
-                            (
-                                item.requestState == 2
-                                    ? <Ionicons name="close-circle" size={20} color="red" />
-                                    :
-                                    (
-                                        <View style={{ flexDirection: "row" }}>
-                                            <TouchableOpacity
-                                                onPress={() => approveRejectRequest(item, "approved")}>
-                                                <Ionicons name="checkmark-circle-outline" size={20} color="green" />
-                                            </TouchableOpacity>
+                        (item.memberType === 0 && item.requestState === 0) ? <Ionicons name="checkmark-circle" size={20} color="grey" /> : (
 
-                                            <TouchableOpacity style={{ marginLeft: "10%" }}
-                                                onPress={() => approveRejectRequest(item, "rejected")}>
-                                                <Ionicons name="close-circle-outline" size={20} color="red" />
-                                            </TouchableOpacity>
-                                        </View>
-                                    )
-                            )
+                            (userLoggedIn.userId === item.approverUserId && item.requestState === 3)
+                                ? (
+                                    <View style={{ flexDirection: "row" }}>
+                                        <TouchableOpacity
+                                            onPress={() => approveRejectRequest(item, "approved")}>
+                                            <Ionicons name="checkmark-circle" size={20} color="#06002B07" />
+                                        </TouchableOpacity>
+
+                                        <TouchableOpacity style={{ marginLeft: "10%" }}
+                                            onPress={() => approveRejectRequest(item, "rejected")}>
+                                            <Ionicons name="close-circle" size={20} color="#06002B07" />
+                                        </TouchableOpacity>
+                                    </View>
+                                )
+                                :
+                                (
+                                    <Ionicons name={getIconName(item)} size={20} color="grey" />
+
+                                ))
                     }
                 </View>
             </View>
         );
     };
 
-    renderTrip = ({ item }) => (
+    const renderTrip = ({ item }) => (
 
         <View style={styles.tripCardContainer}>
 

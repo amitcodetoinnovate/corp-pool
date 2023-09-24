@@ -16,7 +16,8 @@ const CarPoolList = ({ data, onTripSelected }) => {
                     <Text style={styles.riderName}>{item.firstName + " " + item.lastName}</Text>
                 </View>
                 <View style={styles.riderStatusContainer}>
-                    {item.requestState === 1 ? <Ionicons name="checkmark-circle" size={20} color="green" /> : <Ionicons name="ellipsis-horizontal-circle-outline" size={20} color="red" />}
+                    {item.memberType === 0 ? <Ionicons name="checkmark-circle" size={20} color="green" /> :
+                        (item.requestState === 1 ? <Ionicons name="checkmark-circle" size={20} color="green" /> : <Ionicons name="ellipsis-horizontal-circle-outline" size={20} color="red" />)}
                 </View>
             </View>
         );

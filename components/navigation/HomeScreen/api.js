@@ -5,7 +5,7 @@ export const fetchMyTrips = async (userId) => {
     const endpoint = `${BASE_URL}/GetMyTrip?userId=${userId}`;
 
     try {
-        const response = await axios.get(endpoint)
+        const response = await axios.get(endpoint);
         return response.data;
     } catch (error) {
         console.error("There was an error sending the request", error);
@@ -13,11 +13,12 @@ export const fetchMyTrips = async (userId) => {
     }
 };
 
-export const updateMyTrip = async (approvalId, state) => {
+export const updateMyTrip = async (approvalId, state, userId) => {
     const endpoint = `${BASE_URL}/ApproveRejectTrip`;
     const body = {
         "ApprovalId": approvalId,
-        "RequestState": state
+        "RequestState": state,
+        "UserId": userId
     };
     try {
         const response = await axios.post(endpoint, body);
